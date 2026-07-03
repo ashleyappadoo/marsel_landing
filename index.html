@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing page - Marsel</title>
+    <title>Marsel</title>
+    <link rel="icon" type="image/png" href="assets/icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,10 +18,6 @@
             --text: #1A1A1A;
             --text-muted: #666666;
             --border: #E5E7EB;
-        }
-        .theme-pro {
-            --primary: #004AAD;
-            --secondary: #FB5315;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; color: var(--text); overflow-x: hidden; background: var(--bg); }
@@ -36,10 +33,8 @@
         }
         header.visible { opacity: 1; transform: translateY(0); }
         body.view-contact header { opacity: 1; transform: translateY(0); position: sticky; }
-        .logo { font-weight: bold; font-size: 1.5rem; color: var(--primary); text-decoration: none; cursor: pointer; font-family: 'Cormorant Garamond', serif; }
-        .toggle-container { display: flex; gap: 0.5rem; background: var(--surface); padding: 0.25rem; border-radius: 20px; border: 1px solid var(--border); }
-        .toggle-btn { padding: 0.5rem 1rem; border: none; border-radius: 15px; cursor: pointer; font-weight: 600; background: transparent; color: var(--text-muted); }
-        .toggle-btn.active { background: var(--primary); color: white; }
+        .logo-link { cursor: pointer; display: flex; align-items: center; }
+        .logo-link img { height: 40px; width: auto; }
 
         /* VUES */
         .page-view { display: block; }
@@ -52,90 +47,75 @@
 
         /* HERO */
         .hero {
-            min-height: 100vh;
-            width: 100%;
-            max-width: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4rem;
-            padding: 7rem 5% 4rem;
+            min-height: 100vh; width: 100%; max-width: none;
+            display: flex; align-items: center; justify-content: center;
+            gap: 4rem; padding: 7rem 5% 4rem;
             background-image: url("assets/fond_orange.jpeg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
         }
         .hero-left { flex: 1; }
         .hero-right { flex: 0 0 350px; max-width: 350px; }
         .hero h1 {
             font-family: 'Cormorant Garamond', sans-serif;
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            margin-bottom: 1rem;
-            color: #1A1A1A;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 0.8s ease forwards;
+            font-size: clamp(3rem, 6vw, 5rem); font-weight: 800;
+            line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 1rem; color: #1A1A1A;
+            opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s ease forwards;
         }
         .hero p {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
-            font-weight: 300;
-            font-style: italic;
-            color: #4A2A1C;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 14s ease forwards;
-            animation-delay: 1.2s;
+            font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 300; font-style: italic;
+            color: #4A2A1C; margin-bottom: 2rem;
+            opacity: 0; transform: translateY(30px);
+            animation: fadeUp 1.4s ease forwards; animation-delay: 0.4s;
         }
         .cta-group {
-            display: flex; gap: 1rem;
+            display: flex; gap: 1rem; flex-wrap: wrap;
             opacity: 0; transform: translateY(30px);
-            animation: fadeUp 14s ease forwards;
-            animation-delay: 1.2s;
+            animation: fadeUp 1.4s ease forwards; animation-delay: 0.6s;
         }
+        .cta-group .btn { width: 200px; text-align: center; }
         .hero-right {
             opacity: 0; transform: translateY(30px);
-            animation: fadeUp 14s ease forwards;
-            animation-delay: 1.2s;
+            animation: fadeUp 1.4s ease forwards; animation-delay: 0.6s;
         }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         #hero-video { transition: transform 0.3s ease; }
 
         /* BOUTONS */
-        .btn { padding: 0.75rem 1.5rem; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
+        .btn { padding: 1rem 1.75rem; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
         .btn-primary { background: #FB5315; color: white; }
         .btn-secondary { background: rgba(255,255,255,0.55); border: 2px solid #FB5315; color: #FB5315; }
         .btn-secondary:hover { background: white; }
 
         /* GRIDS & CARDS */
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
         .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
-        .card h3 { margin-bottom: 1rem; font-size: 1.25rem; color: var(--primary); }
-        .card img { width: 48px; height: 48px; object-fit: contain; display: block; margin: 0 auto 0.75rem auto; }
+        .card h3 { margin-bottom: 1rem; font-size: 1.25rem; color: var(--primary); text-align: center; }
+        .card > img { width: 48px; height: 48px; object-fit: contain; display: block; margin: 0 auto 0.75rem auto; }
+        .card p { text-align: center; }
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 
-        /* SCHEMA */
-        .schema-placeholder { width: 100%; height: 520px; margin-top: 2rem; overflow: hidden; border: none; background: #f8f9fa; }
-        .schema-animation { width: 100%; height: 100%; border: none; display: block; }
+        /* PHOTO CARDS */
+        .card-photo { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+        .card-photo img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px 12px 0 0; }
+        .card-photo p { padding: 1.25rem; text-align: center; flex: 1; }
 
-        /* AWARD */
-        .award { text-align: center; margin-top: 3rem; padding: 1.5rem; background: rgba(255,107,0,0.1); border-radius: 8px; font-weight: bold; color: var(--primary); font-size: 1.2rem; }
+        /* SCHEMA */
+        .schema-placeholder {
+            width: 100%; height: 520px; margin-top: 2rem;
+            overflow: hidden; background: #ffffff;
+            border-radius: 12px; border: 1px solid var(--border);
+        }
+        .schema-animation { width: 100%; height: 100%; border: none; display: block; }
 
         /* LAST SECTION */
         .last-section {
             max-width: none;
             background-image: url("assets/fond_bleu.jpeg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: white;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
             border-bottom: none;
         }
-        .last-section h2, .last-section .subtitle { color: white; }
+        .last-section h2, .last-section .subtitle { color: #1A1A1A; }
 
         /* CONTACT */
         .contact-container { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; }
@@ -148,47 +128,63 @@
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
         .form-control { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 8px; background: white; font-size: 1rem; outline: none; transition: border-color 0.2s; }
         .form-control:focus { border-color: var(--primary); }
-        .type-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-        .type-option { border: 2px solid var(--border); padding: 1rem; border-radius: 8px; text-align: center; cursor: pointer; font-weight: bold; background: white; transition: all 0.2s; }
-        .type-option.selected { border-color: var(--primary); background: rgba(255,107,0,0.05); color: var(--primary); }
-        .theme-pro .type-option.selected { border-color: var(--primary); background: rgba(0,75,135,0.05); color: var(--primary); }
         .btn-submit { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; }
 
         /* FOOTER */
         footer {
-            width: 100%;
-            padding: 3rem 5%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
+            width: 100%; padding: 3rem 5%;
+            display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem;
             background-image: url("assets/fond_bleu.jpeg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: white;
-             text-shadow: 0 1px 3px rgba(0, 0, 30, 0.5);
+            background-size: cover; background-position: center; background-repeat: no-repeat;
             border: none;
         }
-        footer p, footer a { color: white; }
-        footer a:hover { color: rgba(255,255,255,0.8); }
+        footer p, footer a { color: #1A1A1A; text-decoration: none; }
+        footer a { cursor: pointer; }
+        footer a:hover { text-decoration: underline; }
         footer div { display: flex; flex-wrap: wrap; gap: 1rem; }
 
-        @media (max-width: 740px) {
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; padding: 6rem 1.5rem 3rem; gap: 2rem; }
+            .hero-left { flex: none; width: 100%; }
+            .hero-right { flex: none; width: 100%; max-width: 420px; }
+            .cta-group { justify-content: center; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
             .contact-container { grid-template-columns: 1fr; gap: 2rem; margin: 2rem auto; }
+            section { padding: 4rem 1.5rem; }
+        }
+
+        @media (max-width: 740px) {
             .features-grid { grid-template-columns: 1fr; }
             footer { flex-direction: column; text-align: center; }
+            header { padding: 0.75rem 1rem; }
+            .hero { padding: 6rem 1.25rem 3rem; }
+            .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+            .hero p { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+            .cta-group .btn { width: 160px; }
+            section { padding: 3rem 1.25rem; }
+            h2 { font-size: 1.5rem; }
+            .subtitle { font-size: 1rem; margin-bottom: 2rem; }
+            .grid-3 { grid-template-columns: 1fr; gap: 1.5rem; }
+            .card { padding: 1.5rem; }
+            .schema-placeholder { height: 360px; }
+            .info-section h1 { font-size: 1.8rem; }
+            .form-section { padding: 1.5rem; }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 1.1rem; }
+            .cta-group { flex-direction: column; align-items: center; }
+            .cta-group .btn { width: 100%; }
         }
     </style>
 </head>
 <body>
 
 <header id="main-header">
-    <div class="logo" onclick="showView('landing')">Marsel</div>
-    <div class="toggle-container">
-        <button class="toggle-btn active" onclick="setTheme('public', this)">Public</button>
-        <button class="toggle-btn" onclick="setTheme('pro', this)">Pro</button>
+    <div class="logo-link" onclick="showView('landing')">
+        <img src="assets/logo.png" alt="Marsel">
     </div>
 </header>
 
@@ -200,8 +196,8 @@
             <h1>Le silence a duré assez longtemps</h1>
             <p>Maintenant tu peux agir !</p>
             <div class="cta-group">
-                <button class="btn btn-primary">Découvrir Marsel</button>
-                <button class="btn btn-secondary">Tester Marsel</button>
+                <button class="btn btn-primary" onclick="scrollToSection('section-reseau')">Découvrir Marsel</button>
+                <button class="btn btn-secondary" onclick="scrollToSection('section-cta')">Tester Marsel</button>
             </div>
         </div>
         <div class="hero-right" id="hero-video">
@@ -216,26 +212,28 @@
         <div class="subtitle">Et la plupart du temps, elles n'ont pu alerter personne.</div>
         <div class="grid-3">
             <div class="card">
-                <img src="assets/solitude.png" alt="harcèlement">
+                <img src="assets/solitude.png" alt="solitude">
                 <h3>Seul.e la nuit, réseau à zéro</h3>
                 <p>Tu essaies d'appeler. Ça ne passe pas. Le réseau est saturé ou inexistant. Tu es seul·e face au danger.</p>
             </div>
             <div class="card">
+                <img src="assets/stress.png" alt="stress">
                 <h3>Le stress empêche tout geste</h3>
                 <p>Composer un numéro sous stress prend trop de temps. Chaque seconde compte.</p>
             </div>
             <div class="card">
+                <img src="assets/proches.png" alt="communauté">
                 <h3>Témoin ou victime même combat</h3>
                 <p>Que tu sois victime ou témoin il faut pouvoir agir immédiatement.</p>
             </div>
         </div>
     </section>
 
-    <section>
+    <section id="section-reseau">
         <h2>Et si les gens autour de toi devenaient ton réseau?</h2>
         <div class="subtitle">Fonctionnement du réseau maillé décentralisé citoyen</div>
         <div class="schema-placeholder">
-            <iframe src="marsel-schema-dynamique.html" class="schema-animation" title="Fonctionnement du réseau Marsel"></iframe>
+            <iframe src="assets/marsel-schema-dynamique.html" class="schema-animation" title="Fonctionnement du réseau Marsel"></iframe>
         </div>
     </section>
 
@@ -243,30 +241,61 @@
         <h2>Marsel fonctionne là où tout cesse de fonctionner</h2>
         <div class="subtitle">Fonctionnalités clés</div>
         <div class="features-grid">
-            <div class="card"><img src="assets/urgence.png" alt="Aide"><h3>Aide</h3><p>Un geste suffit. L'alerte part même si tu ne peux pas parler. Flash LED et audio activés automatiquement.</p></div>
-            <div class="card"><img src="assets/proches.png" alt="Réseau de proches"><h3>Réseau de proches</h3><p>Jusqu'à 5 proches enregistrés. Ils reçoivent ta position et l'alerte en temps réel.</p></div>
-            <div class="card"><img src="assets/reseau-mesh.png" alt="Marsel Relay Network"><h3>Marsel Relay Network</h3><p>Réseau mesh décentralisé. Fonctionne là où les opérateurs abandonnent.</p></div>
-            <div class="card"><h3>Safe Places</h3><p>Les lieux refuges proches de toi, visibles sur la carte en permanence.</p></div>
-            <div class="card"><h3>Messagerie</h3><p>Envoie des messages à tes proches même sans réseau.</p></div>
-            <div class="card"><img src="assets/evenement.png" alt="Fonction Event"><h3>Fonction Event</h3><p>Lors des évènements, Marsel se transforme en relais d'appel d'urgence.</p></div>
+            <div class="card">
+                <img src="assets/urgence.png" alt="Aide">
+                <h3>Aide</h3>
+                <p>Un geste suffit. L'alerte part même si tu ne peux pas parler. Flash LED et audio activés automatiquement.</p>
+            </div>
+            <div class="card">
+                <img src="assets/proches.png" alt="Réseau de proches">
+                <h3>Réseau de proches</h3>
+                <p>Jusqu'à 5 proches enregistrés. Ils reçoivent ta position et l'alerte en temps réel.</p>
+            </div>
+            <div class="card">
+                <img src="assets/reseau-mesh.png" alt="Marsel Relay Network">
+                <h3>Marsel Relay Network</h3>
+                <p>Réseau mesh décentralisé. Fonctionne là où les opérateurs abandonnent.</p>
+            </div>
+            <div class="card">
+                <img src="assets/localisation.png" alt="Safe Places">
+                <h3>Safe Places</h3>
+                <p>Les lieux refuges proches de toi, visibles sur la carte en permanence.</p>
+            </div>
+            <div class="card">
+                <img src="assets/messagerie.png" alt="Messagerie">
+                <h3>Messagerie</h3>
+                <p>Envoie des messages à tes proches même sans réseau.</p>
+            </div>
+            <div class="card">
+                <img src="assets/evenement.png" alt="Fonction Event">
+                <h3>Fonction Event</h3>
+                <p>Lors des évènements, Marsel se transforme en relais d'appel d'urgence.</p>
+            </div>
         </div>
     </section>
 
     <section>
-        <h2>Validé en conditions réelles.</h2>
-        <div class="subtitle">Preuves terrain</div>
+        <h2>Un projet à impact en évolution</h2>
         <div class="grid-3">
-            <div class="card"><img src="assets/garorock.jpeg" alt="garorock"><p>Test en conditions réelles lors de la saison 2025 du Festival Garorock</p></div>
-            <div class="card"><img src="assets/sans-reseau.png" alt="sans reseau"><p>Alertes transmises sans réseau</p></div>
-            <div class="card"><p>Optimisation des interventions de l'équipe de sécurité</p></div>
+            <div class="card card-photo">
+                <img src="assets/eureka.jpg" alt="Eureka Incub">
+                <p>Lauréat de l'appel à projet Festival de Demain 2025</p>
+            </div>
+            <div class="card card-photo">
+                <img src="assets/anje.jpg" alt="ANJE Aquitaine">
+                <p>Coup de cœur du concours Créateurs d'impact 2026 d'ANJE Aquitaine</p>
+            </div>
+            <div class="card card-photo">
+                <img src="assets/garorock.jpeg" alt="Garorock">
+                <p>Test en conditions réelles lors de la saison 2025 du Festival Garorock</p>
+            </div>
         </div>
-        <div class="award">🏆 Lauréat Eurêka Incub - Festival de Demain 2025</div>
     </section>
 
-    <section class="last-section" style="text-align: center; padding: 8rem 2rem;">
+    <section id="section-cta" class="last-section" style="text-align: center; padding: 8rem 2rem;">
         <h2>Parce qu'on ne devrait jamais être seul.e face au danger.</h2>
         <div class="subtitle">Rejoins le réseau citoyen. Test Marsel</div>
-        <button class="btn btn-primary" style="font-size: 1.25rem; padding: 1rem 2.5rem;" onclick="showView('contact')">Je veux tester Marsel</button>
+        <button class="btn btn-primary" style="font-size: 1.25rem; padding: 1rem 2.5rem; margin-top: 1rem;" onclick="showView('contact')">Je veux tester Marsel</button>
     </section>
 </div>
 
@@ -281,21 +310,16 @@
                 <div><strong>Email général</strong><div style="color: var(--text-muted);">contact@marselapp.com</div></div>
             </div>
             <div class="info-item">
-                <div class="info-icon"><i data-lucide="tent"></i></div>
+                <div class="info-icon"><i data-lucide="globe"></i></div>
                 <div><strong>Événementiel / Pro</strong><div style="color: var(--text-muted);">www.marselapp.com</div></div>
             </div>
             <div class="info-item">
                 <div class="info-icon"><i class="fa-brands fa-instagram" style="font-size: 20px;"></i></div>
-                <div><strong>Instagram</strong><div style="color: var(--text-muted);">@marsel130426</div></div>
+                <div><strong>Instagram</strong><div style="color: var(--text-muted);">@marsel_app</div></div>
             </div>
         </div>
         <div class="form-section">
-            <form action="#" method="POST">
-                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Vous êtes :</label>
-                <div class="type-selector">
-                    <div class="type-option selected" id="opt-public" onclick="selectType('public')">Un Citoyen (Public)</div>
-                    <div class="type-option" id="opt-pro" onclick="selectType('pro')">Une Organisation (Pro)</div>
-                </div>
+            <form id="contact-form">
                 <div class="form-group"><label for="name">Nom / Prénom ou Structure</label><input type="text" id="name" class="form-control" placeholder="Votre nom" required></div>
                 <div class="form-group"><label for="email">Adresse email</label><input type="email" id="email" class="form-control" placeholder="exemple@domaine.com" required></div>
                 <div class="form-group"><label for="subject">Sujet</label><input type="text" id="subject" class="form-control" placeholder="De quoi s'agit-il ?" required></div>
@@ -312,8 +336,6 @@
     <p style="text-align:center; font-size: 0.9rem;">❤️ Fait sur mesure à Bordeaux</p>
     <div>
         <a onclick="showView('landing')">Accueil</a>
-        <a href="#">Mentions Légales</a>
-        <a href="#">CGU</a>
         <a onclick="showView('contact')">Contact</a>
     </div>
 </footer>
@@ -326,13 +348,18 @@
         document.getElementById('view-landing').classList.add('hidden');
         document.getElementById('view-contact').classList.add('hidden');
         document.body.classList.remove('view-contact');
-        if(viewName === 'contact') {
+        if (viewName === 'contact') {
             document.getElementById('view-contact').classList.remove('hidden');
             document.body.classList.add('view-contact');
         } else {
             document.getElementById('view-landing').classList.remove('hidden');
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToSection(id) {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
     window.addEventListener('scroll', () => {
@@ -342,20 +369,15 @@
         }
     });
 
-    function setTheme(theme, btn) {
-        document.querySelectorAll('.toggle-container .toggle-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        if(theme === 'pro') { document.body.classList.add('theme-pro'); selectType('pro'); }
-        else { document.body.classList.remove('theme-pro'); selectType('public'); }
-    }
-
-    function selectType(type) {
-        if(document.getElementById('opt-public') && document.getElementById('opt-pro')) {
-            document.getElementById('opt-public').classList.remove('selected');
-            document.getElementById('opt-pro').classList.remove('selected');
-            document.getElementById(type === 'pro' ? 'opt-pro' : 'opt-public').classList.add('selected');
-        }
-    }
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name    = document.getElementById('name').value;
+        const email   = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        const body    = `Nom : ${name}\nEmail : ${email}\n\n${message}`;
+        window.location.href = `mailto:ona.action@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
 
     const videoBlock = document.getElementById('hero-video');
     videoBlock.addEventListener('mousemove', (e) => {
