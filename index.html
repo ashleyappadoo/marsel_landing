@@ -60,7 +60,7 @@
             justify-content: center;
             gap: 4rem;
             padding: 7rem 5% 4rem;
-            background-image: url("fond_orange.jpeg");
+            background-image: url("assets/fond_orange.jpeg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -97,7 +97,6 @@
             animation: fadeUp 14s ease forwards;
             animation-delay: 1.2s;
         }
-        .cta-group .btn { flex: 0 0 auto; width: 190px; text-align: center; white-space: nowrap; }
         .hero-right {
             opacity: 0; transform: translateY(30px);
             animation: fadeUp 14s ease forwards;
@@ -107,7 +106,7 @@
         #hero-video { transition: transform 0.3s ease; }
 
         /* BOUTONS */
-        .btn { padding: 1rem 1.75rem; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
+        .btn { padding: 0.75rem 1.5rem; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
         .btn-primary { background: #FB5315; color: white; }
         .btn-secondary { background: rgba(255,255,255,0.55); border: 2px solid #FB5315; color: #FB5315; }
         .btn-secondary:hover { background: white; }
@@ -115,10 +114,9 @@
         /* GRIDS & CARDS */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
-        .card h3 { margin-bottom: 1rem; font-size: 1.25rem; color: var(--primary); text-align: center; }
-        .card img { width: 45px; height: 45px; object-fit: contain; display: block; margin: 0 auto 0.75rem auto; }
+        .card h3 { margin-bottom: 1rem; font-size: 1.25rem; color: var(--primary); }
+        .card img { width: 48px; height: 48px; object-fit: contain; display: block; margin: 0 auto 0.75rem auto; }
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        .card p { text-align: center; }
 
         /* SCHEMA */
         .schema-placeholder { width: 100%; height: 520px; margin-top: 2rem; overflow: hidden; border: none; background: #f8f9fa; }
@@ -130,14 +128,14 @@
         /* LAST SECTION */
         .last-section {
             max-width: none;
-            background-image: url("fond_bleu.jpeg");
+            background-image: url("assets/fond_bleu.jpeg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             color: white;
             border-bottom: none;
         }
-        .last-section h2, .last-section .subtitle { color: #1A1A1A; }
+        .last-section h2, .last-section .subtitle { color: white; }
 
         /* CONTACT */
         .contact-container { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; }
@@ -165,7 +163,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 1.5rem;
-            background-image: url("fond_bleu.jpeg");
+            background-image: url("assets/fond_bleu.jpeg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -173,78 +171,25 @@
              text-shadow: 0 1px 3px rgba(0, 0, 30, 0.5);
             border: none;
         }
-        footer p, footer a { color: #1A1A1A; }
-        footer a:hover { color:  #1A1A1A; }
+        footer p, footer a { color: white; }
+        footer a:hover { color: rgba(255,255,255,0.8); }
         footer div { display: flex; flex-wrap: wrap; gap: 1rem; }
 
-        .card-photo img {
-    width: 15%;
-    height: 48px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-        /* ===================== RESPONSIVE ===================== */
-
-        /* Tablettes / petits écrans (<= 900px) */
-        @media (max-width: 900px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding: 6rem 1.5rem 3rem;
-                gap: 2rem;
-            }
-            .hero-left { flex: none; width: 100%; }
-            .hero-right { flex: none; width: 100%; max-width: 420px; }
-            .cta-group { justify-content: center; flex-wrap: wrap; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .contact-container { grid-template-columns: 1fr; gap: 2rem; margin: 2rem auto; }
-            section { padding: 4rem 1.5rem; }
-        }
-
-        /* Mobile (<= 740px) */
         @media (max-width: 740px) {
             .contact-container { grid-template-columns: 1fr; gap: 2rem; margin: 2rem auto; }
             .features-grid { grid-template-columns: 1fr; }
             footer { flex-direction: column; text-align: center; }
-
-            header { padding: 0.75rem 1rem; }
-            .toggle-btn { padding: 0.4rem 0.75rem; font-size: 0.9rem; }
-
-            .hero { padding: 6rem 1.25rem 3rem; }
-            .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
-            .hero p { font-size: clamp(1.3rem, 5vw, 1.8rem); }
-            .cta-group { justify-content: center; flex-wrap: wrap; }
-
-            section { padding: 3rem 1.25rem; }
-            h2 { font-size: 1.5rem; }
-            .subtitle { font-size: 1rem; margin-bottom: 2rem; }
-
-            .grid-3 { grid-template-columns: 1fr; gap: 1.5rem; }
-            .card { padding: 1.5rem; }
-
-            .schema-placeholder { height: 360px; }
-
-            .info-section h1 { font-size: 1.8rem; }
-            .form-section { padding: 1.5rem; }
-
-            .card-photo img { width: 60px; height: 48px; }
         }
-
-        /* Très petits écrans (<= 400px) */
-        @media (max-width: 400px) {
-            .hero h1 { font-size: 1.8rem; }
-            .hero p { font-size: 1.1rem; }
-        }
-
     </style>
 </head>
 <body>
 
 <header id="main-header">
-    <img src="logo.png" alt="logo" width="95">
+    <div class="logo" onclick="showView('landing')">Marsel</div>
     <div class="toggle-container">
-
+        <button class="toggle-btn active" onclick="setTheme('public', this)">Public</button>
+        <button class="toggle-btn" onclick="setTheme('pro', this)">Pro</button>
+    </div>
 </header>
 
 <!-- VUE 1 : LANDING PAGE -->
@@ -261,7 +206,7 @@
         </div>
         <div class="hero-right" id="hero-video">
             <video autoplay muted playsinline style="width:100%; height:auto; object-fit:cover; border-radius:12px;">
-                <source src="video.mp4" type="video/mp4">
+                <source src="assets/video.mp4" type="video/mp4">
             </video>
         </div>
     </div>
@@ -271,17 +216,15 @@
         <div class="subtitle">Et la plupart du temps, elles n'ont pu alerter personne.</div>
         <div class="grid-3">
             <div class="card">
-                <img src="solitude.png" alt="harcèlement">
+                <img src="assets/solitude.png" alt="harcèlement">
                 <h3>Seul.e la nuit, réseau à zéro</h3>
                 <p>Tu essaies d'appeler. Ça ne passe pas. Le réseau est saturé ou inexistant. Tu es seul·e face au danger.</p>
             </div>
             <div class="card">
-                <img src="stress.png" alt="stress">
                 <h3>Le stress empêche tout geste</h3>
                 <p>Composer un numéro sous stress prend trop de temps. Chaque seconde compte.</p>
             </div>
             <div class="card">
-                <img src="communauté.png" alt="harcèlement">
                 <h3>Témoin ou victime même combat</h3>
                 <p>Que tu sois victime ou témoin il faut pouvoir agir immédiatement.</p>
             </div>
@@ -300,12 +243,12 @@
         <h2>Marsel fonctionne là où tout cesse de fonctionner</h2>
         <div class="subtitle">Fonctionnalités clés</div>
         <div class="features-grid">
-            <div class="card"><img src="urgence.png" alt="Aide"><h3>Aide</h3><p>Un geste suffit. L'alerte part même si tu ne peux pas parler. Flash LED et audio activés automatiquement.</p></div>
-            <div class="card"><img src="proches.png" alt="Réseau de proches"><h3>Réseau de proches</h3><p>Jusqu'à 5 proches enregistrés. Ils reçoivent ta position et l'alerte en temps réel.</p></div>
-            <div class="card"><img src="réseau mesh.png" alt="Marsel Relay Network"><h3>Marsel Relay Network</h3><p>Réseau mesh décentralisé. Fonctionne là où les opérateurs abandonnent.</p></div>
-            <div class="card"><img src="localisation.png" alt="Safe Places"><h3>Safe Places</h3><p>Les lieux refuges proches de toi, visibles sur la carte en permanence.</p></div>
-            <div class="card"><img src="messagerie.png" alt="Messagerie"><h3>Messagerie</h3><p>Envoie des messages à tes proches même sans réseau.</p></div>
-            <div class="card"><img src="évenement.png" alt="Fonction Event"><h3>Fonction Event</h3><p>Lors des évènements, Marsel se transforme en relais d'appel d'urgence.</p></div>
+            <div class="card"><img src="assets/urgence.png" alt="Aide"><h3>Aide</h3><p>Un geste suffit. L'alerte part même si tu ne peux pas parler. Flash LED et audio activés automatiquement.</p></div>
+            <div class="card"><img src="assets/proches.png" alt="Réseau de proches"><h3>Réseau de proches</h3><p>Jusqu'à 5 proches enregistrés. Ils reçoivent ta position et l'alerte en temps réel.</p></div>
+            <div class="card"><img src="assets/reseau-mesh.png" alt="Marsel Relay Network"><h3>Marsel Relay Network</h3><p>Réseau mesh décentralisé. Fonctionne là où les opérateurs abandonnent.</p></div>
+            <div class="card"><h3>Safe Places</h3><p>Les lieux refuges proches de toi, visibles sur la carte en permanence.</p></div>
+            <div class="card"><h3>Messagerie</h3><p>Envoie des messages à tes proches même sans réseau.</p></div>
+            <div class="card"><img src="assets/evenement.png" alt="Fonction Event"><h3>Fonction Event</h3><p>Lors des évènements, Marsel se transforme en relais d'appel d'urgence.</p></div>
         </div>
     </section>
 
@@ -313,11 +256,9 @@
         <h2>Validé en conditions réelles.</h2>
         <div class="subtitle">Preuves terrain</div>
         <div class="grid-3">
-            <div class="card card-photo">
-                <img src="garorock.jpeg" alt="garorock">
-                <p>Test en conditions réelles lors de la saison 2025 du Festival Garorock</p></div>
-            <div class="card"><img src="sans%20réseau.png" alt="sans reseau"><p>Alertes transmises sans réseau</p></div>
-            <div class="card"><img src="sécurité.png" alt="securité"><p>Optimisation des interventions de l'équipe de sécurité</p></div>
+            <div class="card"><img src="assets/garorock.jpeg" alt="garorock"><p>Test en conditions réelles lors de la saison 2025 du Festival Garorock</p></div>
+            <div class="card"><img src="assets/sans-reseau.png" alt="sans reseau"><p>Alertes transmises sans réseau</p></div>
+            <div class="card"><p>Optimisation des interventions de l'équipe de sécurité</p></div>
         </div>
         <div class="award">🏆 Lauréat Eurêka Incub - Festival de Demain 2025</div>
     </section>
@@ -345,14 +286,15 @@
             </div>
             <div class="info-item">
                 <div class="info-icon"><i class="fa-brands fa-instagram" style="font-size: 20px;"></i></div>
-                <div><strong>Instagram</strong><div style="color: var(--text-muted);">@marselapp</div></div>
+                <div><strong>Instagram</strong><div style="color: var(--text-muted);">@marsel130426</div></div>
             </div>
         </div>
         <div class="form-section">
             <form action="#" method="POST">
-
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Vous êtes :</label>
                 <div class="type-selector">
-
+                    <div class="type-option selected" id="opt-public" onclick="selectType('public')">Un Citoyen (Public)</div>
+                    <div class="type-option" id="opt-pro" onclick="selectType('pro')">Une Organisation (Pro)</div>
                 </div>
                 <div class="form-group"><label for="name">Nom / Prénom ou Structure</label><input type="text" id="name" class="form-control" placeholder="Votre nom" required></div>
                 <div class="form-group"><label for="email">Adresse email</label><input type="email" id="email" class="form-control" placeholder="exemple@domaine.com" required></div>
@@ -370,6 +312,8 @@
     <p style="text-align:center; font-size: 0.9rem;">❤️ Fait sur mesure à Bordeaux</p>
     <div>
         <a onclick="showView('landing')">Accueil</a>
+        <a href="#">Mentions Légales</a>
+        <a href="#">CGU</a>
         <a onclick="showView('contact')">Contact</a>
     </div>
 </footer>
