@@ -432,14 +432,10 @@
         btn.textContent = 'Envoyer le message';
     });
 
-    // Mobile : boutons apparaissent à la fin de la vidéo
+    // Mobile : boutons apparaissent 5s après le chargement de la page
     if (window.innerWidth <= 900) {
-        const heroVideo = document.querySelector('.hero video');
         const cta = document.querySelector('.cta-group');
-        const showCta = () => cta.classList.add('cta-visible');
-        heroVideo.addEventListener('ended', showCta);
-        // Fallback si la vidéo ne se termine pas (chargement lent, autoplay bloqué…)
-        setTimeout(showCta, 12000);
+        setTimeout(() => cta.classList.add('cta-visible'), 5000);
     }
 
     const videoBlock = document.getElementById('hero-video');
