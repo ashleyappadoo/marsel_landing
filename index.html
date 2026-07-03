@@ -159,7 +159,14 @@
             }
             .cta-group {
                 justify-content: center;
-                animation-delay: 1s; /* apparition douce après la vidéo */
+                opacity: 0;
+                transform: translateY(20px);
+                animation: none;
+                transition: opacity 0.9s ease, transform 0.9s ease;
+            }
+            .cta-group.cta-visible {
+                opacity: 1;
+                transform: translateY(0);
             }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .contact-container { grid-template-columns: 1fr; gap: 2rem; margin: 2rem auto; }
@@ -333,7 +340,7 @@
         </div>
         <div class="form-section">
             <form id="contact-form">
-                <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS">
+                <input type="hidden" name="access_key" value="a9887978-0075-4cff-b894-a17d85fb7caa">
                 <input type="hidden" name="to" value="ona.action@gmail.com">
                 <div class="form-group"><label for="name">Nom / Prénom ou Structure</label><input type="text" id="name" name="name" class="form-control" placeholder="Votre nom" required></div>
                 <div class="form-group"><label for="email">Adresse email</label><input type="email" id="email" name="email" class="form-control" placeholder="exemple@domaine.com" required></div>
@@ -424,6 +431,16 @@
         btn.disabled = false;
         btn.textContent = 'Envoyer le message';
     });
+
+    // Mobile : boutons apparaissent à la fin de la vidéo
+    if (window.innerWidth <= 900) {
+        const heroVideo = document.querySelector('.hero video');
+        const cta = document.querySelector('.cta-group');
+        const showCta = () => cta.classList.add('cta-visible');
+        heroVideo.addEventListener('ended', showCta);
+        // Fallback si la vidéo ne se termine pas (chargement lent, autoplay bloqué…)
+        setTimeout(showCta, 12000);
+    }
 
     const videoBlock = document.getElementById('hero-video');
     videoBlock.addEventListener('mousemove', (e) => {
