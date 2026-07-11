@@ -19,6 +19,10 @@
             --text-muted: #666666;
             --border: #E5E7EB;
         }
+        .theme-pro {
+            --primary: #004AAD;
+            --secondary: #FB5315;
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; color: var(--text); overflow-x: hidden; background: var(--bg); }
 
@@ -27,14 +31,17 @@
             position: fixed; top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
             padding: 1rem 2rem;
-            background: rgba(255,255,255,0.8); backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.9); backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             z-index: 1000; opacity: 0; transform: translateY(-20px); transition: all 0.4s ease;
         }
         header.visible { opacity: 1; transform: translateY(0); }
         body.view-contact header { opacity: 1; transform: translateY(0); position: sticky; }
         .logo-link { cursor: pointer; display: flex; align-items: center; }
-        .logo-link img { height: 56px; width: auto; }
+        .logo-link img { height: 56px; width: auto; transition: opacity 0.3s; }
+        .toggle-container { display: flex; gap: 0.5rem; background: var(--surface); padding: 0.25rem; border-radius: 20px; border: 1px solid var(--border); }
+        .toggle-btn { padding: 0.5rem 1.25rem; border: none; border-radius: 15px; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: transparent; color: var(--text-muted); transition: all 0.2s; }
+        .toggle-btn.active { background: var(--primary); color: white; }
 
         /* VUES */
         .page-view { display: block; }
@@ -54,9 +61,10 @@
             gap: 1.5rem 4rem;
             align-items: center;
             padding: 7rem 5% 4rem;
-            background-image: url("assets/fond_orange.jpeg");
             background-size: cover; background-position: center; background-repeat: no-repeat;
         }
+        .hero-public { background-image: url("assets/fond_orange.jpeg"); }
+        .hero-pro-bg { background-image: url("assets/fond_bleu.jpeg"); }
         .hero-text { grid-area: text; align-self: end; }
         .hero-right { grid-area: video; align-self: center; }
         .cta-group { grid-area: cta; align-self: start; }
@@ -73,6 +81,7 @@
             opacity: 0; transform: translateY(30px);
             animation: fadeUp 1.4s ease forwards; animation-delay: 0.4s;
         }
+        .hero-pro-bg .hero p { color: #1C2E4A; }
         .cta-group {
             display: flex; gap: 1rem; flex-wrap: wrap;
             opacity: 0; transform: translateY(30px);
@@ -84,12 +93,12 @@
             animation: fadeUp 1.4s ease forwards; animation-delay: 0.5s;
         }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-        #hero-video { transition: transform 0.3s ease; }
+        #hero-video, #hero-video-pro { transition: transform 0.3s ease; }
 
         /* BOUTONS */
         .btn { padding: 1rem 1.75rem; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
-        .btn-primary { background: #FB5315; color: white; }
-        .btn-secondary { background: rgba(255,255,255,0.55); border: 2px solid #FB5315; color: #FB5315; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-secondary { background: rgba(255,255,255,0.55); border: 2px solid var(--primary); color: var(--primary); }
         .btn-secondary:hover { background: white; }
 
         /* GRIDS & CARDS */
@@ -99,6 +108,10 @@
         .card > img { width: 48px; height: 48px; object-fit: contain; display: block; margin: 0 auto 0.75rem auto; }
         .card p { text-align: center; }
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+        /* ICONES LUCIDE DANS CARDS */
+        .card-icon { display: flex; justify-content: center; margin-bottom: 0.75rem; color: var(--primary); }
+        .card-icon svg { width: 48px; height: 48px; }
 
         /* PHOTO CARDS */
         .card-photo { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
@@ -116,11 +129,26 @@
         /* LAST SECTION */
         .last-section {
             max-width: none;
-            background-image: url("assets/fond_bleu.jpeg");
             background-size: cover; background-position: center; background-repeat: no-repeat;
             border-bottom: none;
         }
+        .last-section-public { background-image: url("assets/fond_bleu.jpeg"); }
+        .last-section-pro-bg { background-image: url("assets/fond_orange.jpeg"); }
         .last-section h2, .last-section .subtitle { color: #1A1A1A; }
+
+        /* FOOTER */
+        footer {
+            width: 100%; padding: 3rem 5%;
+            display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem;
+            background-image: url("assets/fond_bleu.jpeg");
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            border: none; transition: background-image 0s;
+        }
+        .theme-pro footer { background-image: url("assets/fond_orange.jpeg"); }
+        footer p, footer a { color: #1A1A1A; text-decoration: none; font-size: 0.95rem; }
+        footer a { cursor: pointer; }
+        footer a:hover { text-decoration: underline; }
+        footer div { display: flex; flex-wrap: wrap; gap: 1rem; }
 
         /* CONTACT */
         .contact-container { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; }
@@ -134,19 +162,6 @@
         .form-control { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 8px; background: white; font-size: 1rem; outline: none; transition: border-color 0.2s; }
         .form-control:focus { border-color: var(--primary); }
         .btn-submit { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; }
-
-        /* FOOTER */
-        footer {
-            width: 100%; padding: 3rem 5%;
-            display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem;
-            background-image: url("assets/fond_bleu.jpeg");
-            background-size: cover; background-position: center; background-repeat: no-repeat;
-            border: none;
-        }
-        footer p, footer a { color: #1A1A1A; text-decoration: none; font-size: 0.95rem; }
-        footer a { cursor: pointer; }
-        footer a:hover { text-decoration: underline; }
-        footer div { display: flex; flex-wrap: wrap; gap: 1rem; }
 
         /* ===================== RESPONSIVE ===================== */
         @media (max-width: 900px) {
@@ -164,10 +179,7 @@
                 animation: none;
                 transition: opacity 0.9s ease, transform 0.9s ease;
             }
-            .cta-group.cta-visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            .cta-group.cta-visible { opacity: 1; transform: translateY(0); }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .contact-container { grid-template-columns: 1fr; gap: 2rem; margin: 2rem auto; }
             section { padding: 4rem 1.5rem; }
@@ -177,6 +189,7 @@
             .features-grid { grid-template-columns: 1fr; }
             footer { flex-direction: column; text-align: center; }
             header { padding: 0.75rem 1rem; }
+            .toggle-btn { padding: 0.4rem 0.75rem; font-size: 0.8rem; }
             .hero { padding: 6rem 1.25rem 3rem; }
             .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
             .hero p { font-size: clamp(1.3rem, 5vw, 1.8rem); }
@@ -202,15 +215,21 @@
 <body>
 
 <header id="main-header">
-    <div class="logo-link" onclick="showView('landing')">
-        <img src="assets/logo.png" alt="Marsel">
+    <div class="logo-link" onclick="goHome()">
+        <img src="assets/logo.png" alt="Marsel" id="logo-img">
+    </div>
+    <div class="toggle-container">
+        <button class="toggle-btn active" onclick="setMode('public', this)">Public</button>
+        <button class="toggle-btn" onclick="setMode('pro', this)">Pro</button>
     </div>
 </header>
 
-<!-- VUE 1 : LANDING PAGE -->
+<!-- ═══════════════════════════════════════════════
+     VUE 1 : LANDING PUBLIC
+════════════════════════════════════════════════ -->
 <div id="view-landing" class="page-view">
 
-    <div class="hero">
+    <div class="hero hero-public">
         <div class="hero-text">
             <h1>Le silence a duré assez longtemps</h1>
             <p>Maintenant tu peux agir !</p>
@@ -220,9 +239,9 @@
                 <source src="assets/video.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="cta-group">
+        <div class="cta-group" id="cta-public">
             <button class="btn btn-primary" onclick="scrollToSection('section-1sur3')">Découvrir Marsel</button>
-            <button class="btn btn-secondary" onclick="scrollToSection('section-cta')">Tester Marsel</button>
+            <button class="btn btn-secondary" onclick="scrollToSection('section-cta-public')">Tester Marsel</button>
         </div>
     </div>
 
@@ -295,7 +314,7 @@
 
     <section>
         <h2>Un projet à impact en évolution</h2>
-        <hr style="border: none; border-top: 1px solid var(--border); margin: 1.5rem auto; width: 60px;">
+        <hr style="border:none; border-top:1px solid var(--border); margin:1.5rem auto; width:60px;">
         <div class="grid-3">
             <div class="card card-photo">
                 <img src="assets/eureka.jpg" alt="Eureka Incub">
@@ -312,14 +331,130 @@
         </div>
     </section>
 
-    <section id="section-cta" class="last-section" style="text-align: center; padding: 8rem 2rem;">
+    <section id="section-cta-public" class="last-section last-section-public" style="text-align:center; padding:8rem 2rem;">
         <h2>Parce qu'on ne devrait jamais être seul.e face au danger.</h2>
         <div class="subtitle">Rejoins le réseau citoyen. Test Marsel</div>
-        <button class="btn btn-primary" style="font-size: 1.25rem; padding: 1rem 2.5rem; margin-top: 1rem;" onclick="showView('contact')">Je veux tester Marsel</button>
+        <button class="btn btn-primary" style="font-size:1.25rem; padding:1rem 2.5rem; margin-top:1rem;" onclick="showView('contact')">Je veux tester Marsel</button>
     </section>
 </div>
 
-<!-- VUE 2 : CONTACT -->
+<!-- ═══════════════════════════════════════════════
+     VUE 2 : LANDING PRO
+════════════════════════════════════════════════ -->
+<div id="view-landing-pro" class="page-view hidden">
+
+    <div class="hero hero-pro-bg">
+        <div class="hero-text">
+            <h1>Vous ne pouvez pas protéger ce que vous ne voyez pas.</h1>
+            <p>Pilotez votre sécurité en temps réel, même quand le réseau lâche.</p>
+        </div>
+        <div class="hero-right" id="hero-video-pro">
+            <video autoplay muted playsinline style="width:100%; height:auto; object-fit:cover; border-radius:12px;">
+                <source src="assets/marsel_pro_video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="cta-group" id="cta-pro">
+            <button class="btn btn-primary" onclick="scrollToSection('section-pro-probleme')">Découvrir Marsel Pro</button>
+            <button class="btn btn-secondary" onclick="showView('contact')">Demander une démo</button>
+        </div>
+    </div>
+
+    <section id="section-pro-probleme">
+        <h2>Sur le terrain, zéro visibilité en temps réel.</h2>
+        <div class="subtitle">Et le jour où ça compte, vos équipes sont injoignables.</div>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon"><i data-lucide="eye-off"></i></div>
+                <h3>Agents à l'aveugle</h3>
+                <p>Sans géolocalisation live, impossible de savoir qui est le plus proche d'un incident.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i data-lucide="wifi-off"></i></div>
+                <h3>Réseau saturé, intervention bloquée</h3>
+                <p>En cas d'affluence ou de zone blanche, les communications classiques tombent au pire moment.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i data-lucide="file-clock"></i></div>
+                <h3>Rapports a posteriori</h3>
+                <p>Sans cartographie des incidents en direct, vous analysez après coup, jamais pendant.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Et si les gens que vous protégez constituaient votre réseau ?</h2>
+        <div class="subtitle">Le Marsel Relay Network citoyen pour la couverture de proximité, le Marsel Relay Long Range pour une infrastructure dédiée longue portée.</div>
+        <div class="schema-placeholder">
+            <iframe src="assets/marsel-schema-dynamique.html" class="schema-animation" title="Fonctionnement du réseau Marsel Pro"></iframe>
+        </div>
+    </section>
+
+    <section>
+        <h2>Une infrastructure pensée pour le terrain, pas pour le bureau.</h2>
+        <div class="subtitle">Fonctionnalités clés</div>
+        <div class="features-grid">
+            <div class="card">
+                <div class="card-icon"><i data-lucide="layout-dashboard"></i></div>
+                <h3>Tableau de bord live</h3>
+                <p>Géolocalisation des agents, cartographie des alertes, vue d'ensemble en temps réel.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i data-lucide="smartphone"></i></div>
+                <h3>Marsel Pro (appli mobile)</h3>
+                <p>Tracking, communication terrain, remontée d'incidents en un geste.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i data-lucide="radio"></i></div>
+                <h3>Marsel Relay Long Range</h3>
+                <p>Hardware LoRa déployé sur site, réseau dédié indépendant des opérateurs.</p>
+            </div>
+            <div class="card">
+                <img src="assets/reseau-mesh.png" alt="Marsel Relay Network">
+                <h3>Marsel Relay Network</h3>
+                <p>S'appuie aussi sur le réseau citoyen grand public pour étendre la couverture.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i data-lucide="signal-zero"></i></div>
+                <h3>Zones blanches & tunnels</h3>
+                <p>Couverture là où le cellulaire abandonne.</p>
+            </div>
+            <div class="card">
+                <img src="assets/evenement.png" alt="Mode Event">
+                <h3>Mode Event ou abonnement</h3>
+                <p>Activation ponctuelle pour un événement, ou couverture permanente pour un territoire.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Testé là où ça compte vraiment.</h2>
+        <hr style="border:none; border-top:1px solid var(--border); margin:1.5rem auto; width:60px;">
+        <div class="grid-3">
+            <div class="card card-photo">
+                <img src="assets/eureka.jpg" alt="Eureka Incub">
+                <p>Lauréat de l'appel à projet Festival de Demain 2025</p>
+            </div>
+            <div class="card card-photo">
+                <img src="assets/anje.jpg" alt="ANJE Aquitaine">
+                <p>Coup de cœur du concours Créateurs d'impact 2026 d'ANJE Aquitaine</p>
+            </div>
+            <div class="card card-photo">
+                <img src="assets/garorock.jpeg" alt="Garorock">
+                <p>Test en conditions réelles lors de la saison 2025 du Festival Garorock</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="last-section last-section-pro-bg" style="text-align:center; padding:8rem 2rem;">
+        <h2>Votre équipe ne devrait jamais intervenir à l'aveugle.</h2>
+        <div class="subtitle">Rejoignez les organisations qui font de la sécurité une priorité visible — festivals, collectivités, espaces urbains.</div>
+        <button class="btn btn-primary" style="font-size:1.25rem; padding:1rem 2.5rem; margin-top:1rem;" onclick="showView('contact')">Demander une démo</button>
+    </section>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     VUE 3 : CONTACT
+════════════════════════════════════════════════ -->
 <div id="view-contact" class="page-view hidden">
     <main class="contact-container">
         <div class="info-section">
@@ -327,15 +462,15 @@
             <p>Une question sur l'application, besoin d'un partenariat pour un festival ou d'un déploiement sur votre commune ? Nos équipes vous répondent sous 24h.</p>
             <div class="info-item">
                 <div class="info-icon"><i data-lucide="mail"></i></div>
-                <div><strong>Email général</strong><div style="color: var(--text-muted);">contact@marselapp.com</div></div>
+                <div><strong>Email général</strong><div style="color:var(--text-muted);">contact@marselapp.com</div></div>
             </div>
             <div class="info-item">
                 <div class="info-icon"><i data-lucide="globe"></i></div>
-                <div><strong>Événementiel / Pro</strong><div style="color: var(--text-muted);">www.marselapp.com</div></div>
+                <div><strong>Événementiel / Pro</strong><div style="color:var(--text-muted);">www.marselapp.com</div></div>
             </div>
             <div class="info-item">
-                <div class="info-icon"><i class="fa-brands fa-instagram" style="font-size: 20px;"></i></div>
-                <div><strong>Instagram</strong><div style="color: var(--text-muted);">@marsel_app</div></div>
+                <div class="info-icon"><i class="fa-brands fa-instagram" style="font-size:20px;"></i></div>
+                <div><strong>Instagram</strong><div style="color:var(--text-muted);">@marsel_app</div></div>
             </div>
         </div>
         <div class="form-section">
@@ -345,9 +480,9 @@
                 <div class="form-group"><label for="name">Nom / Prénom ou Structure</label><input type="text" id="name" name="name" class="form-control" placeholder="Votre nom" required></div>
                 <div class="form-group"><label for="email">Adresse email</label><input type="email" id="email" name="email" class="form-control" placeholder="exemple@domaine.com" required></div>
                 <div class="form-group"><label for="subject">Sujet</label><input type="text" id="subject" name="subject" class="form-control" placeholder="De quoi s'agit-il ?" required></div>
-                <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" class="form-control" rows="5" placeholder="Votre message détaillé..." style="resize: vertical;" required></textarea></div>
+                <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" class="form-control" rows="5" placeholder="Votre message détaillé..." style="resize:vertical;" required></textarea></div>
                 <button type="submit" class="btn-submit" id="submit-btn">Envoyer le message</button>
-                <div id="form-success" style="display:none; opacity:1; text-align:center; margin-top:1rem; padding:1rem; background:rgba(251,83,21,0.1); border-radius:8px; color:var(--primary); font-weight:600; transition: opacity 0.6s ease;">
+                <div id="form-success" style="display:none; opacity:1; text-align:center; margin-top:1rem; padding:1rem; background:rgba(0,74,173,0.08); border-radius:8px; color:var(--primary); font-weight:600; transition:opacity 0.6s ease;">
                     Merci et à bientôt ! 👋
                 </div>
             </form>
@@ -356,11 +491,11 @@
 </div>
 
 <!-- FOOTER -->
-<footer>
+<footer id="main-footer">
     <p>© 2026 Marsel. Tous droits réservés.</p>
-    <p style="text-align:center;">❤️ <a href="https://www.ona-asso.fr" target="_blank" rel="noopener" style="font-size:0.95rem;">Projet porté par l'association ONA</a></p>
+    <p style="text-align:center;">❤️ <a href="https://www.ona-asso.fr" target="_blank" rel="noopener">Projet porté par l'association ONA</a></p>
     <div>
-        <a onclick="showView('landing')">Accueil</a>
+        <a onclick="goHome()">Accueil</a>
         <a onclick="showView('contact')">Contact</a>
     </div>
 </footer>
@@ -369,17 +504,45 @@
 <script>
     lucide.createIcons();
 
+    let currentMode = 'public';
+
     function showView(viewName) {
         document.getElementById('view-landing').classList.add('hidden');
+        document.getElementById('view-landing-pro').classList.add('hidden');
         document.getElementById('view-contact').classList.add('hidden');
         document.body.classList.remove('view-contact');
+
         if (viewName === 'contact') {
             document.getElementById('view-contact').classList.remove('hidden');
             document.body.classList.add('view-contact');
+        } else if (viewName === 'landing-pro') {
+            document.getElementById('view-landing-pro').classList.remove('hidden');
         } else {
             document.getElementById('view-landing').classList.remove('hidden');
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goHome() {
+        showView(currentMode === 'pro' ? 'landing-pro' : 'landing');
+    }
+
+    function setMode(mode, btn) {
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentMode = mode;
+
+        if (mode === 'pro') {
+            document.body.classList.add('theme-pro');
+            document.getElementById('logo-img').src = 'assets/marsel_logo_pro.png';
+            showView('landing-pro');
+        } else {
+            document.body.classList.remove('theme-pro');
+            document.getElementById('logo-img').src = 'assets/logo.png';
+            showView('landing');
+        }
+        // Re-render lucide icons after mode switch (new icons may be visible)
+        lucide.createIcons();
     }
 
     function scrollToSection(id) {
@@ -394,6 +557,29 @@
         }
     });
 
+    // Mobile : boutons apparaissent 4s après chargement
+    if (window.innerWidth <= 900) {
+        setTimeout(() => {
+            document.querySelectorAll('.cta-group').forEach(cta => cta.classList.add('cta-visible'));
+        }, 4000);
+    }
+
+    // 3D tilt sur les vidéos hero
+    ['hero-video', 'hero-video-pro'].forEach(id => {
+        const block = document.getElementById(id);
+        if (!block) return;
+        block.addEventListener('mousemove', (e) => {
+            const rect = block.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            block.style.transform = `perspective(1000px) rotateX(${-y/30}deg) rotateY(${x/30}deg) scale(1.03)`;
+        });
+        block.addEventListener('mouseleave', () => {
+            block.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+    });
+
+    // Formulaire contact — envoi Web3Forms
     document.getElementById('contact-form').addEventListener('submit', async function(e) {
         e.preventDefault();
         const btn = document.getElementById('submit-btn');
@@ -430,23 +616,6 @@
 
         btn.disabled = false;
         btn.textContent = 'Envoyer le message';
-    });
-
-    // Mobile : boutons apparaissent 5s après le chargement de la page
-    if (window.innerWidth <= 900) {
-        const cta = document.querySelector('.cta-group');
-        setTimeout(() => cta.classList.add('cta-visible'), 4000);
-    }
-
-    const videoBlock = document.getElementById('hero-video');
-    videoBlock.addEventListener('mousemove', (e) => {
-        const rect = videoBlock.getBoundingClientRect();
-        const x = e.clientX - rect.left - (rect.width / 2);
-        const y = e.clientY - rect.top - (rect.height / 2);
-        videoBlock.style.transform = `perspective(1000px) rotateX(${-y/30}deg) rotateY(${x/30}deg) scale(1.03)`;
-    });
-    videoBlock.addEventListener('mouseleave', () => {
-        videoBlock.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
     });
 </script>
 </body>
